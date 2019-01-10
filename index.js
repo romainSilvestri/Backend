@@ -15,15 +15,13 @@ app.use(cors());
 app.use(express.json());
 app.use(passport.initialize());
 
-app.use('/api', api);
+app.use('/', api);
 
 app.use('/auth', router);
 
 // middleware to handle erros
 app.use((err, req, res) => {
-  console.error(err);
+  res.status(400).send(err);
 });
 
-app.listen(port, () => {
-  console.log(`Server OK: http://localhost:${port}`);
-});
+app.listen(port, () => {});
